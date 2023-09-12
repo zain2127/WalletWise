@@ -4,7 +4,7 @@ import 'package:walletwise/Utils/Fluttertoast.dart';
 import 'package:walletwise/Views/DashboardScreens/DashboardScreen.dart';
 import 'package:walletwise/Views/AuthenticationScreens/SignInScreen.dart';
 
-class AuthenticationController{
+class AuthController{
   final auth = FirebaseAuth.instance;
   Future<void> signIn(String email , String password , BuildContext context) async {
     await auth.signInWithEmailAndPassword(email: email, password: password).then((value){

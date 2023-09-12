@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "153330731165",
+    "project_id": "walletwise-1766a",
+    "storage_bucket": "walletwise-1766a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153330731165:android:0c142c0732f6f651786c74",
+        "android_client_info": {
+          "package_name": "com.example.walletwise"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmlFaFnSJ3yVRb8S9sRi5u4jasKJ8KHfI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

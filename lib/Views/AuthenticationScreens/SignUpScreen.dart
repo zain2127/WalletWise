@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/Controlller/AuthenticationController.dart';
+import 'package:walletwise/Views/AuthenticationScreens/SignInScreen.dart';
+import 'package:walletwise/Utils/custominputfeild.dart';
+import 'package:walletwise/Views/AuthenticationScreens/ForgotPasswordScreen.dart';
 
 
 class SignUpScreen extends StatefulWidget {
@@ -12,43 +15,49 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal:16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Wallet Wise",
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
+          child: Form(
+            key: _formkey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Sign Up to Wallet Wise ",
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              Image.asset('assets/signin.jpg' ,height: 200,),
-              const SizedBox(height: 20),
-               TextField(
-                controller: emailController,
-                decoration: const InputDecoration(
-                  hintText: "Email",
+                SizedBox(height: 10,),
+                Image.asset('assets/signin.jpg' ,height: 200,),
+                const SizedBox(height: 20),
+                CustomInput(hinttext: 'Email', controller: emailController, obsecure: false, validate: 'Enter Email',keyboardType: TextInputType.emailAddress,),
+                CustomInput(hinttext: 'Password', controller: passwordController, obsecure: false, validate: 'Enter Password',keyboardType: TextInputType.visiblePassword,),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  child: const Text("Sign Up"),
+                  onPressed: () {
+                    if(_formkey.currentState!.validate())
+                    {
+                      AuthController().signUp(emailController.text, passwordController.text, context);
+                    }
+                    },
                 ),
-              ),
-              const SizedBox(height: 20),
-               TextField(
-                controller: passwordController,
-                decoration: const InputDecoration(
-                  hintText: "Password",
-                ),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                child: const Text("Sign Up"),
-                onPressed: () {AuthController().signUp(emailController.text, passwordController.text, context);},
-              ),
-            ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('Already have an account ?'),
+                    TextButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const SignInScreen()));}, child: const Text('Sign In'))
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

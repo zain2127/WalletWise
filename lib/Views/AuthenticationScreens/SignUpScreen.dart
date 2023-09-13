@@ -16,6 +16,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
+  bool loading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,11 +42,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 CustomInput(hinttext: 'Password', controller: passwordController, obsecure: false, validate: 'Enter Password',keyboardType: TextInputType.visiblePassword,),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  child: const Text("Sign Up"),
-                  onPressed: () {
+                  child: loading ? CircularProgressIndicator(color: Colors.white,):Text("Sign Up"),
+                  onPressed: () async{
                     if(_formkey.currentState!.validate())
                     {
-                      AuthController().signUp(emailController.text, passwordController.text, context);
+                      setState(() {
+                        loading = true;
+                      });
+                      await AuthController().signUp(emailController.text, passwordController.text, context);
+                      setState(() {
+                        loading = false;
+                      });
                     }
                     },
                 ),

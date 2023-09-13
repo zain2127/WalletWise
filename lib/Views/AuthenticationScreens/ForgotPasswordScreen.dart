@@ -13,6 +13,7 @@ class ForgotPasswordScreen extends StatefulWidget {
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final emailController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
+  bool loading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,11 +38,18 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 CustomInput(hinttext: 'Email', controller: emailController, obsecure: false, validate: 'Enter Email',keyboardType: TextInputType.emailAddress,),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  child: const Text("Send"),
-                  onPressed: () {
+                  style: ButtonStyle(),
+                  child: loading == true ? const CircularProgressIndicator(color: Colors.white,): const Text("Send"),
+                  onPressed: () async {
                     if(_formkey.currentState!.validate())
                     {
-                      AuthController().forgotPassword(emailController.text, context);
+                      setState(() {
+                        loading = true;
+                      });
+                      await AuthController().forgotPassword(emailController.text, context);
+                      setState(() {
+                        loading = false;
+                      });
                     }
                   },
                 ),

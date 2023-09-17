@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:walletwise/Controlller/AuthenticationController.dart';
 import 'package:walletwise/Views/AuthenticationScreens/SignInScreen.dart';
 import 'package:walletwise/Utils/custominputfeild.dart';
-import 'package:walletwise/Views/AuthenticationScreens/ForgotPasswordScreen.dart';
 
 
 class SignUpScreen extends StatefulWidget {
@@ -35,14 +34,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 Image.asset('assets/signin.jpg' ,height: 200,),
                 const SizedBox(height: 20),
                 CustomInput(hinttext: 'Email', controller: emailController, obsecure: false, validate: 'Enter Email',keyboardType: TextInputType.emailAddress,),
                 CustomInput(hinttext: 'Password', controller: passwordController, obsecure: false, validate: 'Enter Password',keyboardType: TextInputType.visiblePassword,),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  child: loading ? CircularProgressIndicator(color: Colors.white,):Text("Sign Up"),
+                  child: loading ? const CircularProgressIndicator(color: Colors.white,):const Text("Sign Up"),
                   onPressed: () async{
                     if(_formkey.currentState!.validate())
                     {

@@ -18,13 +18,17 @@ class _ExpenseTileState extends State<ExpenseTile> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: ListTile(
-        // tileColor: Colors.blue.shade200,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        title: Text(widget.name),
-        subtitle:
-            Text('${widget.date.day}/${widget.date.month}/${widget.date.year}'),
-        trailing: Text("${widget.expense} Rs"),
+      child: Card(
+        elevation: 4,
+        child: ListTile(
+          // tileColor: Colors.blue.shade200,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          title: Text(widget.name),
+          subtitle: Text(
+              '${widget.date.day}/${widget.date.month}/${widget.date.year}'),
+          trailing: Text("${widget.expense} Rs"),
+        ),
       ),
     );
   }

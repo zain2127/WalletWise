@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/Views/CryptoScreen/CryptoScreen.dart';
 import 'package:walletwise/Views/DashboardScreens/DashboardScreen.dart';
 import 'package:walletwise/Views/SettingScreen/SettingScreen.dart';
 
@@ -13,7 +14,7 @@ class _MyHomePageState extends State<MyHomePage> {
   // Pages corresponding to each item in the bottom navigation bar
   final List<Widget> _pages = const [
     DashboardScreen(),
-    Center(child: Text('Crypto Screen')),
+    CryptoScreen(),
     SettingScreen()
   ];
 
